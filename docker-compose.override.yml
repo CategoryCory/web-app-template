@@ -1,0 +1,19 @@
+services:
+  frontend:
+    command: npm run dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+  
+  backend:
+    command: dotnet watch run
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ./backend:/src
+      - ./backend/appsettings.Development.json:/app/appsettings.json
