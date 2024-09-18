@@ -271,4 +271,8 @@ __pycache__/
 # Cake - Uncomment if you are using it
 # tools/
 
+# Appsettings
+appsettings.json
+appsettings.Production.json
+
 # End of https://www.toptal.com/developers/gitignore/api/aspnetcore
