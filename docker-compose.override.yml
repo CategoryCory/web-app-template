@@ -14,6 +14,27 @@ services:
     command: dotnet watch run
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - POSTGRES_HOST=postgres_db
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=pgpassword
+      - POSTGRES_DB=pgdb
     volumes:
       - ./backend:/src
       - ./backend/appsettings.Development.json:/app/appsettings.json
+    depends_on:
+      - postgres_db
+
+  postgres_db:
+    container_name: postgres_db
+    image: postgres:16.4
+    environment:
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=pgpassword
+      - POSTGRES_DB=pgdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
