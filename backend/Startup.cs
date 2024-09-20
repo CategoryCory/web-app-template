@@ -16,6 +16,7 @@ public class Startup
     {
         services.ConfigureCors(_config);
         services.ConfigureDatabase(_config);
+        services.ConfigureIdentity(_config);
         services.AddControllers();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();

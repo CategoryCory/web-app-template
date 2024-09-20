@@ -23,6 +23,23 @@ services:
       - ./backend/appsettings.Development.json:/app/appsettings.json
     depends_on:
       - postgres_db
+      - migrate_db
+  
+  migrate_db:
+    container_name: migrate_db
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    working_dir: /src
+    entrypoint: ["/bin/sh", "/src/Scripts/dev_entrypoint.sh"]
+    volumes:
+      - ./backend:/src
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - POSTGRES_HOST=postgres_db
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=pgpassword
+      - POSTGRES_DB=pgdb
+    depends_on:
+      - postgres_db
 
   postgres_db:
     container_name: postgres_db
