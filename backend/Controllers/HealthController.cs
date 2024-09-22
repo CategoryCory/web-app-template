@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAppBackendTemplate.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/v1/[controller]")]
 [ApiController]
 public class HealthController : ControllerBase
 {
@@ -10,6 +10,6 @@ public class HealthController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult Ready()
     {
-        return Ok(new { msg = "API is running" });
+        return Ok(new { status = "healthy", msg = "API is running" });
     }
 }
